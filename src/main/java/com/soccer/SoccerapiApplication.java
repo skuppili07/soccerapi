@@ -1,4 +1,4 @@
-package com.fifa.soccer.springboot.soccerapi;
+package com.soccer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
