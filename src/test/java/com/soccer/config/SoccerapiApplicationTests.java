@@ -1,4 +1,4 @@
-package com.fifa.soccer.springboot.soccerapi;
+package com.soccer.config;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
