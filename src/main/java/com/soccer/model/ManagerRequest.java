@@ -1,35 +1,23 @@
 package com.soccer.model;
 
-import javax.persistence.*;
-import java.util.Date;
-
 /**
- * Created by Team Gryffindor on 9/3/2018.
+ * Created by karte on 9/5/2018.
  */
-@Entity
-public class Manager {
+public class ManagerRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer manager_id;
 
-    @Column
     private String manager_frst_nm;
 
-    @Column
     private String manager_lst_nm;
 
-    @Column
     private String manager_dob;
 
-    @Column
     private String manager_origin_place;
 
-    @Column
-    private Date manager_cntrct_strt_dt;
+    private String manager_cntrct_strt_dt;
 
-    @Column
-    private Date manager_cntrct_end_dt;
+    private String manager_cntrct_end_dt;
 
     public Integer getManager_id() {
         return manager_id;
@@ -71,19 +59,19 @@ public class Manager {
         this.manager_origin_place = manager_origin_place;
     }
 
-    public Date getManager_cntrct_strt_dt() {
+    public String getManager_cntrct_strt_dt() {
         return manager_cntrct_strt_dt;
     }
 
-    public void setManager_cntrct_strt_dt(Date manager_cntrct_strt_dt) {
+    public void setManager_cntrct_strt_dt(String manager_cntrct_strt_dt) {
         this.manager_cntrct_strt_dt = manager_cntrct_strt_dt;
     }
 
-    public Date getManager_cntrct_end_dt() {
+    public String getManager_cntrct_end_dt() {
         return manager_cntrct_end_dt;
     }
 
-    public void setManager_cntrct_end_dt(Date manager_cntrct_end_dt) {
+    public void setManager_cntrct_end_dt(String manager_cntrct_end_dt) {
         this.manager_cntrct_end_dt = manager_cntrct_end_dt;
     }
 }
