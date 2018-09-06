@@ -3,7 +3,7 @@ package com.soccer.resource;
 import com.soccer.model.Country;
 import com.soccer.model.ManagerRequest;
 import com.soccer.model.ManagerResponse;
-import com.soccer.repository.ClubTeamRepository;
+import com.soccer.repository.ClubRepository;
 import com.soccer.repository.CountryRepository;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.service.api.SoccerService;
@@ -21,7 +21,7 @@ public class SoccerResource {
     private PlayerRepository playerRepository;
 
     @Autowired
-    private ClubTeamRepository clubTeamRepository;
+    private ClubRepository clubRepository;
 
 
     @Autowired

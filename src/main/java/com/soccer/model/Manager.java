@@ -14,22 +14,22 @@ public class Manager {
     private Integer manager_id;
 
     @Column
-    private String manager_frst_nm;
+    private String first_name;
 
     @Column
-    private String manager_lst_nm;
+    private String last_name;
 
     @Column
-    private String manager_dob;
+    private Date birth_date;
 
     @Column
-    private String manager_origin_place;
+    private Integer country_id;
 
     @Column
-    private Date manager_cntrct_strt_dt;
+    private Date start_date;
 
     @Column
-    private Date manager_cntrct_end_dt;
+    private Date end_date;
 
     public Integer getManager_id() {
         return manager_id;
@@ -39,51 +39,51 @@ public class Manager {
         this.manager_id = manager_id;
     }
 
-    public String getManager_frst_nm() {
-        return manager_frst_nm;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setManager_frst_nm(String manager_frst_nm) {
-        this.manager_frst_nm = manager_frst_nm;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getManager_lst_nm() {
-        return manager_lst_nm;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setManager_lst_nm(String manager_lst_nm) {
-        this.manager_lst_nm = manager_lst_nm;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public String getManager_dob() {
-        return manager_dob;
+    public Date getBirth_date() {
+        return birth_date;
     }
 
-    public void setManager_dob(String manager_dob) {
-        this.manager_dob = manager_dob;
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
     }
 
-    public String getManager_origin_place() {
-        return manager_origin_place;
+    public Integer getCountry_id() {
+        return country_id;
     }
 
-    public void setManager_origin_place(String manager_origin_place) {
-        this.manager_origin_place = manager_origin_place;
+    public void setCountry_id(Integer country_id) {
+        this.country_id = country_id;
     }
 
-    public Date getManager_cntrct_strt_dt() {
-        return manager_cntrct_strt_dt;
+    public Date getStart_date() {
+        return start_date;
     }
 
-    public void setManager_cntrct_strt_dt(Date manager_cntrct_strt_dt) {
-        this.manager_cntrct_strt_dt = manager_cntrct_strt_dt;
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
     }
 
-    public Date getManager_cntrct_end_dt() {
-        return manager_cntrct_end_dt;
+    public Date getEnd_date() {
+        return end_date;
     }
 
-    public void setManager_cntrct_end_dt(Date manager_cntrct_end_dt) {
-        this.manager_cntrct_end_dt = manager_cntrct_end_dt;
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
 }
