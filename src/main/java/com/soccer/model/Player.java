@@ -11,43 +11,35 @@ import java.util.Date;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer player_Id;
 
     @Column
-    private String player_frst_nm;
+    private String first_name;
 
     @Column
-    private String player_lst_nm;
+    private String middle_name;
 
     @Column
-    private String player_dob;
+    private String last_name;
 
     @Column
-    private String player_intern_team;
+    private String birth_date;
 
     @Column
-    private String player_origin_cntry;
+    private String nationality_country_id;
 
     @Column
-    private Integer club_team_id;
+    private Integer birth_country_id;
 
     @Column
-    private String player_middle_nm;
+    private String club_id;
 
     @Column
-    private Date player_cntrct_start_date;
+    private Date start_date;
 
     @Column
-    private Date player_cntrct_end_date;
-
-    public String getPlayer_middle_nm() {
-        return player_middle_nm;
-    }
-
-    public void setPlayer_middle_nm(String player_middle_nm) {
-        this.player_middle_nm = player_middle_nm;
-    }
+    private Date end_date;
 
     public Integer getPlayer_Id() {
         return player_Id;
@@ -57,67 +49,75 @@ public class Player {
         this.player_Id = player_Id;
     }
 
-    public String getPlayer_frst_nm() {
-        return player_frst_nm;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setPlayer_frst_nm(String player_frst_nm) {
-        this.player_frst_nm = player_frst_nm;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getPlayer_lst_nm() {
-        return player_lst_nm;
+    public String getMiddle_name() {
+        return middle_name;
     }
 
-    public void setPlayer_lst_nm(String player_lst_nm) {
-        this.player_lst_nm = player_lst_nm;
+    public void setMiddle_name(String middle_name) {
+        this.middle_name = middle_name;
     }
 
-    public String getPlayer_dob() {
-        return player_dob;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setPlayer_dob(String player_dob) {
-        this.player_dob = player_dob;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public String getPlayer_intern_team() {
-        return player_intern_team;
+    public String getBirth_date() {
+        return birth_date;
     }
 
-    public void setPlayer_intern_team(String player_intern_team) {
-        this.player_intern_team = player_intern_team;
+    public void setBirth_date(String birth_date) {
+        this.birth_date = birth_date;
     }
 
-    public String getPlayer_origin_cntry() {
-        return player_origin_cntry;
+    public String getNationality_country_id() {
+        return nationality_country_id;
     }
 
-    public void setPlayer_origin_cntry(String player_origin_cntry) {
-        this.player_origin_cntry = player_origin_cntry;
+    public void setNationality_country_id(String nationality_country_id) {
+        this.nationality_country_id = nationality_country_id;
     }
 
-    public Integer getClub_team_id() {
-        return club_team_id;
+    public Integer getBirth_country_id() {
+        return birth_country_id;
     }
 
-    public void setClub_team_id(Integer club_team_id) {
-        this.club_team_id = club_team_id;
+    public void setBirth_country_id(Integer birth_country_id) {
+        this.birth_country_id = birth_country_id;
     }
 
-    public Date getPlayer_cntrct_start_date() {
-        return player_cntrct_start_date;
+    public String getClub_id() {
+        return club_id;
     }
 
-    public void setPlayer_cntrct_start_date(Date player_cntrct_start_date) {
-        this.player_cntrct_start_date = player_cntrct_start_date;
+    public void setClub_id(String club_id) {
+        this.club_id = club_id;
     }
 
-    public Date getPlayer_cntrct_end_date() {
-        return player_cntrct_end_date;
+    public Date getStart_date() {
+        return start_date;
     }
 
-    public void setPlayer_cntrct_end_date(Date player_cntrct_end_date) {
-        this.player_cntrct_end_date = player_cntrct_end_date;
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
 }
