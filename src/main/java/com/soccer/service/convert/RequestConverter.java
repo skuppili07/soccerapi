@@ -2,6 +2,8 @@ package com.soccer.service.convert;
 
 import com.soccer.model.Manager;
 import com.soccer.model.ManagerRequest;
+import com.soccer.model.Player;
+import com.soccer.model.PlayerRequest;
 import org.springframework.stereotype.Component;
 
 /**
@@ -39,5 +41,46 @@ public class RequestConverter {
             }
         }
         return manager;
+    }
+
+    public Player convertPlayerRequest(PlayerRequest playerRequest){
+        Player player = new Player();
+        if(playerRequest.getFirst_name() != null && playerRequest.getFirst_name().trim() != "")
+        {
+            player.setFirst_name(playerRequest.getFirst_name());
+        }
+        if(playerRequest.getLast_name() != null && playerRequest.getLast_name().trim() != "")
+        {
+            player.setLast_name(playerRequest.getLast_name());
+        }
+        if(playerRequest.getBirth_date() != null && playerRequest.getBirth_date().trim() != "")
+        {
+            player.setBirth_date(playerRequest.getBirth_date());
+        }
+        if(playerRequest.getNationality_country_id() != null && playerRequest.getNationality_country_id().trim() != "")
+        {
+            player.setNationality_country_id(playerRequest.getNationality_country_id());
+        }
+        if(playerRequest.getFirst_name() != null && playerRequest.getFirst_name().trim() != "")
+        {
+            player.setFirst_name(playerRequest.getFirst_name());
+        }
+        if(playerRequest.getBirth_country_id() != null && playerRequest.getBirth_country_id() != 0)
+        {
+            player.setBirth_country_id(playerRequest.getBirth_country_id());
+        }
+        if(playerRequest.getClub_id() != null && playerRequest.getClub_id().trim() != "")
+        {
+            player.setClub_id(playerRequest.getClub_id());
+        }
+        if(playerRequest.getStart_date() != null )
+        {
+            player.setStart_date(playerRequest.getStart_date());
+        }
+        if(playerRequest.getEnd_date() != null)
+        {
+            player.setEnd_date(playerRequest.getEnd_date());
+        }
+        return player;
     }
 }
