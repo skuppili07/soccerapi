@@ -1,44 +1,33 @@
 package com.soccer.model;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
- * Created by Team Gryffindor on 9/3/2018.
+ * Created by karte on 9/6/2018.
  */
+public class PlayerRequest {
 
-@Entity
-public class Player {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer player_Id;
 
-    @Column
+      
     private String first_name;
 
-    @Column
+       
     private String middle_name;
 
-    @Column
+
     private String last_name;
 
-    @Column
     private String birth_date;
 
-    @Column
     private String nationality_country_id;
 
-    @Column
     private Integer birth_country_id;
 
-    @Column
     private String club_id;
 
-    @Column
     private LocalDate start_date;
 
-    @Column
     private LocalDate end_date;
 
     public Integer getPlayer_Id() {
@@ -121,3 +110,4 @@ public class Player {
         this.end_date = end_date;
     }
 }
+
