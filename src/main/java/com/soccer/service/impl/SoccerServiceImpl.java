@@ -1,6 +1,7 @@
 package com.soccer.service.impl;
 
 import com.soccer.model.*;
+import com.soccer.repository.ClubRepository;
 import com.soccer.repository.ManagerRepository;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.service.api.SoccerService;
@@ -26,12 +27,16 @@ public class SoccerServiceImpl implements SoccerService {
     private PlayerRepository playerRepository;
 
     @Autowired
+    private ClubRepository clubRepository;
+
+    @Autowired
     private RequestConverter requestConverter;
 
     @Override
     public ManagerResponse createManager(ManagerRequest managerRequest) {
         ManagerResponse managerResponse = new ManagerResponse();
-        Manager manager = requestConverter.convertManagerRequest(managerRequest);
+        Manager managerSentForReq = new Manager();
+        Manager manager = requestConverter.convertManagerRequest(managerRequest, managerSentForReq);
         Manager managerFromDB = managerRepository.save(manager);
         if(managerFromDB.getManager_id() != null) {
             managerResponse.setManager_id(managerFromDB.getManager_id());
@@ -47,14 +52,80 @@ public class SoccerServiceImpl implements SoccerService {
     }
 
     @Override
+    public Manager getManagerById(String managerId) {
+        Manager manager = new Manager();
+        int convertedManagerId = 0;
+        try {
+            convertedManagerId = Integer.parseInt(managerId);
+        }
+        catch (Exception e) {
+
+        }
+        Optional<Manager> managerOptional = managerRepository.findById(convertedManagerId);
+        if(managerOptional.isPresent()) {
+            manager = managerOptional.get();
+            if(formatDate(manager.getStart_date().toString()) != null) {
+                manager.setStart_date(formatDate(manager.getStart_date().toString()));
+            }
+            if(formatDate(manager.getEnd_date().toString()) != null) {
+                manager.setEnd_date(formatDate(manager.getEnd_date().toString()));
+            }
+        }
+        return manager;
+    }
+
+    @Override
     public PlayerResponse createPlayer(PlayerRequest playerRequest) {
         PlayerResponse playerResponse = new PlayerResponse();
-        Player player = requestConverter.convertPlayerRequest(playerRequest);
+        Player playerSentForReq = new Player();
+        Player player = requestConverter.convertPlayerRequest(playerRequest, playerSentForReq);
         Player playerFromDb = playerRepository.save(player);
         if(playerFromDb.getPlayer_Id() != null) {
             playerResponse.setPlayer_Id(playerFromDb.getPlayer_Id());
         }
         return playerResponse;
+    }
+
+    @Override
+    public PlayerResponse editPlayer(PlayerRequest playerRequest, String playerId) throws Exception {
+        PlayerResponse playerResponse = new PlayerResponse();
+        Player player = getPlayerById(playerId);
+        if(player == null) {
+            throw new Exception("Player not found with this id");
+        }
+        if(player != null && playerRequest != null){
+            player = getModifiedPlayerRequest(player, playerRequest);
+        }
+//        Player player = requestConverter.convertPlayerRequest(playerRequest);
+
+        Player playerResponseFromDB = playerRepository.save(player);
+        if(playerResponseFromDB.getPlayer_Id() != null) {
+            playerResponse.setPlayer_Id(playerResponseFromDB.getPlayer_Id());
+        }
+        return playerResponse;
+    }
+
+    @Override
+    public ManagerResponse editManager(ManagerRequest managerRequest, String managerId) throws Exception {
+        ManagerResponse managerResponse = new ManagerResponse();
+        Manager manager = getManagerById(managerId);
+        if(manager == null) {
+            throw new Exception("Manager not found with this id");
+        }
+        if(manager != null && managerRequest != null){
+            manager = getModifiedManagerRequest(manager, managerRequest);
+        }
+//        Player player = requestConverter.convertPlayerRequest(playerRequest);
+
+        Manager managerResponseFromDB = managerRepository.save(manager);
+        if(managerResponseFromDB.getManager_id() != null) {
+            managerResponse.setManager_id(managerResponseFromDB.getManager_id());
+        }
+        return managerResponse;
+    }
+
+    private Manager getModifiedManagerRequest(Manager manager, ManagerRequest managerRequest) {
+        return requestConverter.convertManagerRequest(managerRequest, manager);
     }
 
     @Override
@@ -87,6 +158,45 @@ public class SoccerServiceImpl implements SoccerService {
         return player;
     }
 
+    @Override
+    public List<Club> getAllClubs() {
+        List<Club> clubList = new ArrayList<>();
+        clubList = clubRepository.findAll();
+        return clubList;
+    }
+
+    @Override
+    public Club getClubById(String clubId) throws Exception {
+        Club club = new Club();
+        int convertedClubId = 0;
+        try {
+            convertedClubId = Integer.parseInt(clubId);
+        }
+        catch (Exception e) {
+
+        }
+        Optional<Club> clubOptional = clubRepository.findById(convertedClubId);
+        if(clubOptional.isPresent()) {
+            club = clubOptional.get();
+        }
+        else {
+            throw new Exception("Cannot find the club with this id = " + clubId);
+        }
+        return club;
+    }
+
+    @Override
+    public ClubResponse createClub(ClubRequest clubRequest) {
+        ClubResponse clubResponse = new ClubResponse();
+        Club clubSentForReq = new Club();
+        Club club = requestConverter.convertClubRequest(clubRequest, clubSentForReq);
+        Club clubFromDB = clubRepository.save(club);
+        if(clubFromDB.getClub_id() != null) {
+            clubResponse.setClub_id(clubFromDB.getClub_id());
+        }
+        return clubResponse;
+    }
+
     private LocalDate formatDate(String date) {
         LocalDate formattedDate = null;
         try {
@@ -96,5 +206,9 @@ public class SoccerServiceImpl implements SoccerService {
             e.printStackTrace();
         }
         return formattedDate;
+    }
+
+    private Player getModifiedPlayerRequest(Player player, PlayerRequest playerRequest) {
+            return requestConverter.convertPlayerRequest(playerRequest, player);
     }
 }

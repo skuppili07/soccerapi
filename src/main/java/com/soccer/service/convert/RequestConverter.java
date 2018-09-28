@@ -1,9 +1,6 @@
 package com.soccer.service.convert;
 
-import com.soccer.model.Manager;
-import com.soccer.model.ManagerRequest;
-import com.soccer.model.Player;
-import com.soccer.model.PlayerRequest;
+import com.soccer.model.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,8 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RequestConverter {
 
-    public Manager convertManagerRequest(ManagerRequest managerRequest) {
-        Manager manager = new Manager();
+    public Manager convertManagerRequest(ManagerRequest managerRequest, Manager manager) {
         if (managerRequest.getFirst_name() != null && managerRequest.getFirst_name().trim() != "") {
             manager.setFirst_name(managerRequest.getFirst_name());
         }
@@ -43,44 +39,50 @@ public class RequestConverter {
         return manager;
     }
 
-    public Player convertPlayerRequest(PlayerRequest playerRequest){
-        Player player = new Player();
-        if(playerRequest.getFirst_name() != null && playerRequest.getFirst_name().trim() != "")
-        {
+    public Player convertPlayerRequest(PlayerRequest playerRequest, Player player) {
+        if (playerRequest.getFirst_name() != null && playerRequest.getFirst_name().trim() != "") {
             player.setFirst_name(playerRequest.getFirst_name());
         }
-        if(playerRequest.getLast_name() != null && playerRequest.getLast_name().trim() != "")
-        {
+        if (playerRequest.getLast_name() != null && playerRequest.getLast_name().trim() != "") {
             player.setLast_name(playerRequest.getLast_name());
         }
-        if(playerRequest.getBirth_date() != null && playerRequest.getBirth_date().trim() != "")
-        {
+        if (playerRequest.getBirth_date() != null && playerRequest.getBirth_date().trim() != "") {
             player.setBirth_date(playerRequest.getBirth_date());
         }
-        if(playerRequest.getNationality_country_id() != null && playerRequest.getNationality_country_id().trim() != "")
-        {
+        if (playerRequest.getNationality_country_id() != null && playerRequest.getNationality_country_id().trim() != "") {
             player.setNationality_country_id(playerRequest.getNationality_country_id());
         }
-        if(playerRequest.getFirst_name() != null && playerRequest.getFirst_name().trim() != "")
-        {
+        if (playerRequest.getFirst_name() != null && playerRequest.getFirst_name().trim() != "") {
             player.setFirst_name(playerRequest.getFirst_name());
         }
-        if(playerRequest.getBirth_country_id() != null && playerRequest.getBirth_country_id() != 0)
-        {
+        if (playerRequest.getBirth_country_id() != null && playerRequest.getBirth_country_id() != 0) {
             player.setBirth_country_id(playerRequest.getBirth_country_id());
         }
-        if(playerRequest.getClub_id() != null && playerRequest.getClub_id().trim() != "")
-        {
+        if (playerRequest.getClub_id() != null && playerRequest.getClub_id().trim() != "") {
             player.setClub_id(playerRequest.getClub_id());
         }
-        if(playerRequest.getStart_date() != null )
-        {
+        if (playerRequest.getStart_date() != null) {
             player.setStart_date(playerRequest.getStart_date());
         }
-        if(playerRequest.getEnd_date() != null)
-        {
+        if (playerRequest.getEnd_date() != null) {
             player.setEnd_date(playerRequest.getEnd_date());
         }
         return player;
+    }
+
+    public Club convertClubRequest(ClubRequest clubRequest, Club club) {
+        if (clubRequest.getName() != null && clubRequest.getName().trim() != "") {
+            club.setName(clubRequest.getName());
+        }
+        if (clubRequest.getClub_id() != null) {
+            club.setClub_id(clubRequest.getClub_id());
+        }
+        if (clubRequest.getManager_id() != null) {
+            club.setManager_id(clubRequest.getManager_id());
+        }
+        if (clubRequest.getCountry_id() != null) {
+            club.setCountry_id(clubRequest.getCountry_id());
+        }
+        return club;
     }
 }
