@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class SoccerServiceImpl implements SoccerService {
         ManagerResponse managerResponse = new ManagerResponse();
         Manager managerSentForReq = new Manager();
         Manager manager = requestConverter.convertManagerRequest(managerRequest, managerSentForReq);
+        manager.setCreated_date(new Date());
         Manager managerFromDB = managerRepository.save(manager);
         if(managerFromDB.getManager_id() != null) {
             managerResponse.setManager_id(managerFromDB.getManager_id());
@@ -79,6 +81,7 @@ public class SoccerServiceImpl implements SoccerService {
         PlayerResponse playerResponse = new PlayerResponse();
         Player playerSentForReq = new Player();
         Player player = requestConverter.convertPlayerRequest(playerRequest, playerSentForReq);
+        player.setCreated_date(new Date());
         Player playerFromDb = playerRepository.save(player);
         if(playerFromDb.getPlayer_Id() != null) {
             playerResponse.setPlayer_Id(playerFromDb.getPlayer_Id());
@@ -97,7 +100,7 @@ public class SoccerServiceImpl implements SoccerService {
             player = getModifiedPlayerRequest(player, playerRequest);
         }
 //        Player player = requestConverter.convertPlayerRequest(playerRequest);
-
+        player.setUpdated_date(new Date());
         Player playerResponseFromDB = playerRepository.save(player);
         if(playerResponseFromDB.getPlayer_Id() != null) {
             playerResponse.setPlayer_Id(playerResponseFromDB.getPlayer_Id());
@@ -116,7 +119,7 @@ public class SoccerServiceImpl implements SoccerService {
             manager = getModifiedManagerRequest(manager, managerRequest);
         }
 //        Player player = requestConverter.convertPlayerRequest(playerRequest);
-
+        manager.setUpdated_date(new Date());
         Manager managerResponseFromDB = managerRepository.save(manager);
         if(managerResponseFromDB.getManager_id() != null) {
             managerResponse.setManager_id(managerResponseFromDB.getManager_id());
@@ -190,6 +193,7 @@ public class SoccerServiceImpl implements SoccerService {
         ClubResponse clubResponse = new ClubResponse();
         Club clubSentForReq = new Club();
         Club club = requestConverter.convertClubRequest(clubRequest, clubSentForReq);
+        club.setCreated_date(new Date());
         Club clubFromDB = clubRepository.save(club);
         if(clubFromDB.getClub_id() != null) {
             clubResponse.setClub_id(clubFromDB.getClub_id());
