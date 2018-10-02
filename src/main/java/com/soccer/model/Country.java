@@ -3,6 +3,7 @@ package com.soccer.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * Created by karte on 9/3/2018.
@@ -20,6 +21,28 @@ public class Country {
 
     @Column
     private String alpha_3; // the ISO 3166-1 alpha-3 three-letter country codes
+
+    @Column
+    private Date created_date;
+
+    @Column
+    private Date updated_date;
+
+    public Date getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
+    }
+
+    public Date getUpdated_date() {
+        return updated_date;
+    }
+
+    public void setUpdated_date(Date updated_date) {
+        this.updated_date = updated_date;
+    }
 
     public Integer getCountry_id() {
         return country_id;
