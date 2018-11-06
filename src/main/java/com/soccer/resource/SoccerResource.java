@@ -78,13 +78,13 @@ public class SoccerResource {
 
     @PatchMapping(path = "/edit-player/{playerId}")
     @ResponseBody
-    public ResponseEntity<PlayerResponse> editPlayer(@RequestBody PlayerRequest playerRequest, @PathVariable String playerId) {
+    public ResponseEntity<PlayerResponse> editPlayer(@RequestBody PlayerRequest playerRequest, @PathVariable String playerId) throws Exception {
         PlayerResponse playerResponse = new PlayerResponse();
         try {
              playerResponse = soccerServiceImpl.editPlayer(playerRequest, playerId);
         }
         catch (Exception ex) {
-
+            throw new Exception(ex.getMessage());
         }
         return  new ResponseEntity<>(playerResponse, HttpStatus.NO_CONTENT);
     }
@@ -98,12 +98,12 @@ public class SoccerResource {
 
     @GetMapping(path = "/club/{clubId}")
     @ResponseBody
-    public Club getClubById(@PathVariable String clubId) {
+    public Club getClubById(@PathVariable String clubId) throws Exception {
         Club club = new Club();
         try {
             club = soccerServiceImpl.getClubById(clubId);
         } catch (Exception e) {
-            System.out.println("Error while invoking the Patch request (Club)");
+            throw new Exception(e.getMessage());
         }
         return  club;
     }
