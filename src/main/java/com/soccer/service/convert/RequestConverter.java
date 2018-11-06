@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RequestConverter {
 
+
     public Manager convertManagerRequest(ManagerRequest managerRequest, Manager manager) {
         if (managerRequest.getFirst_name() != null && managerRequest.getFirst_name().trim() != "") {
             manager.setFirst_name(managerRequest.getFirst_name());

@@ -19,4 +19,5 @@ public interface SoccerService {
     List<Club> getAllClubs();
     Club getClubById(String clubId) throws Exception;
     ClubResponse createClub(ClubRequest clubRequest);
+    ClubResponse editClub(ClubRequest clubRequest, String clubId) throws Exception;
 }
