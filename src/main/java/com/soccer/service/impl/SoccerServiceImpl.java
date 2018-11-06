@@ -6,11 +6,13 @@ import com.soccer.repository.ManagerRepository;
 import com.soccer.repository.PlayerRepository;
 import com.soccer.service.api.SoccerService;
 import com.soccer.service.convert.RequestConverter;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +39,7 @@ public class SoccerServiceImpl implements SoccerService {
         ManagerResponse managerResponse = new ManagerResponse();
         Manager managerSentForReq = new Manager();
         Manager manager = requestConverter.convertManagerRequest(managerRequest, managerSentForReq);
+        manager.setCreated_date(new Date());
         Manager managerFromDB = managerRepository.save(manager);
         if(managerFromDB.getManager_id() != null) {
             managerResponse.setManager_id(managerFromDB.getManager_id());
@@ -79,6 +82,7 @@ public class SoccerServiceImpl implements SoccerService {
         PlayerResponse playerResponse = new PlayerResponse();
         Player playerSentForReq = new Player();
         Player player = requestConverter.convertPlayerRequest(playerRequest, playerSentForReq);
+        player.setCreated_date(new Date());
         Player playerFromDb = playerRepository.save(player);
         if(playerFromDb.getPlayer_Id() != null) {
             playerResponse.setPlayer_Id(playerFromDb.getPlayer_Id());
@@ -97,7 +101,7 @@ public class SoccerServiceImpl implements SoccerService {
             player = getModifiedPlayerRequest(player, playerRequest);
         }
 //        Player player = requestConverter.convertPlayerRequest(playerRequest);
-
+        player.setUpdated_date(new Date());
         Player playerResponseFromDB = playerRepository.save(player);
         if(playerResponseFromDB.getPlayer_Id() != null) {
             playerResponse.setPlayer_Id(playerResponseFromDB.getPlayer_Id());
@@ -106,17 +110,39 @@ public class SoccerServiceImpl implements SoccerService {
     }
 
     @Override
+    public ClubResponse editClub(ClubRequest clubRequest, String clubId) throws Exception {
+        ClubResponse clubResponse = new ClubResponse();
+        try {
+            Club club = getClubById(clubId);
+            if (club == null) {
+                throw new Exception("Club is not Available");
+            }
+            else {
+                club = getModifiedClubRequest(club, clubRequest);
+                club.setUpdated_date(new Date());
+            }
+                Club cludReponseFromDb = clubRepository.save(club);
+            if(cludReponseFromDb.getClub_id() != null) {
+                clubResponse.setClub_id(cludReponseFromDb.getClub_id());
+            }
+        } catch (Exception e) {
+            throw new Exception("error while updating the club info");
+        }
+
+        return clubResponse;
+    }
+
+    @Override
     public ManagerResponse editManager(ManagerRequest managerRequest, String managerId) throws Exception {
         ManagerResponse managerResponse = new ManagerResponse();
         Manager manager = getManagerById(managerId);
         if(manager == null) {
-            throw new Exception("Manager not found with this id");
+            throw new NotFoundException("Manager not found with this id");
         }
         if(manager != null && managerRequest != null){
             manager = getModifiedManagerRequest(manager, managerRequest);
         }
-//        Player player = requestConverter.convertPlayerRequest(playerRequest);
-
+        manager.setUpdated_date(new Date());
         Manager managerResponseFromDB = managerRepository.save(manager);
         if(managerResponseFromDB.getManager_id() != null) {
             managerResponse.setManager_id(managerResponseFromDB.getManager_id());
@@ -126,6 +152,10 @@ public class SoccerServiceImpl implements SoccerService {
 
     private Manager getModifiedManagerRequest(Manager manager, ManagerRequest managerRequest) {
         return requestConverter.convertManagerRequest(managerRequest, manager);
+    }
+
+    private Club getModifiedClubRequest(Club club, ClubRequest clubRequest) {
+        return requestConverter.convertClubRequest(clubRequest, club);
     }
 
     @Override
@@ -190,12 +220,15 @@ public class SoccerServiceImpl implements SoccerService {
         ClubResponse clubResponse = new ClubResponse();
         Club clubSentForReq = new Club();
         Club club = requestConverter.convertClubRequest(clubRequest, clubSentForReq);
+        club.setCreated_date(new Date());
         Club clubFromDB = clubRepository.save(club);
         if(clubFromDB.getClub_id() != null) {
             clubResponse.setClub_id(clubFromDB.getClub_id());
         }
         return clubResponse;
     }
+
+
 
     private LocalDate formatDate(String date) {
         LocalDate formattedDate = null;

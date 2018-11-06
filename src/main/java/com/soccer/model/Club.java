@@ -1,6 +1,7 @@
 package com.soccer.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Team Gryffindor on 9/3/2018.
@@ -20,6 +21,28 @@ public class Club {
 
     @Column
     private Integer manager_id;
+
+    @Column
+    private Date created_date;
+
+    @Column
+    private Date updated_date;
+
+    public Date getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
+    }
+
+    public Date getUpdated_date() {
+        return updated_date;
+    }
+
+    public void setUpdated_date(Date updated_date) {
+        this.updated_date = updated_date;
+    }
 
     public Integer getClub_id() {
         return club_id;
