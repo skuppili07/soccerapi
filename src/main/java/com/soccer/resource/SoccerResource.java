@@ -70,6 +70,11 @@ public class SoccerResource {
         return soccerServiceImpl.getPlayerById(playerId);
     }
 
+    @GetMapping(path = "/get-player")
+    public @ResponseBody List<Player> getPlayerByName(@RequestParam String playerName) {
+        return soccerServiceImpl.getPlayerByName(playerName);
+    }
+
     @PostMapping(path = "/create-player")
     @ResponseBody
     public PlayerResponse createPlayer (@RequestBody PlayerRequest playerRequest) {

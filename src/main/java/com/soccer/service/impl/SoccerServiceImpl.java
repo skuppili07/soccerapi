@@ -244,4 +244,11 @@ public class SoccerServiceImpl implements SoccerService {
     private Player getModifiedPlayerRequest(Player player, PlayerRequest playerRequest) {
             return requestConverter.convertPlayerRequest(playerRequest, player);
     }
+
+    @Override
+    public List<Player> getPlayerByName(String playerName) {
+        List<Player> playerByName = playerRepository.fetchPlayerByName("%"+playerName+"%");
+        return playerByName;
+    }
+
 }
