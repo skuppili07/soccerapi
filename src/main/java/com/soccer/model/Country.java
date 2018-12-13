@@ -3,12 +3,14 @@ package com.soccer.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Created by karte on 9/3/2018.
  */
 @Entity
+@Table(name="country")
 public class Country {
     @Id
     private Integer country_id; // the ISO 3166-1 numeric country codes

@@ -8,6 +8,7 @@ import java.util.Date;
  * Created by Team Gryffindor on 9/3/2018.
  */
 @Entity
+@Table(name = "manager")
 public class Manager {
 
     @Id

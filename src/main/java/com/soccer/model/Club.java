@@ -7,6 +7,7 @@ import java.util.Date;
  * Created by Team Gryffindor on 9/3/2018.
  */
 @Entity
+@Table(name = "club")
 public class Club {
 
     @Id

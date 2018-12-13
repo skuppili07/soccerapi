@@ -1,8 +1,11 @@
 package com.soccer.model;
 
+import javax.persistence.Table;
+
 /**
  * Created by karte on 9/27/2018.
  */
+@Table(schema = "soccer")
 public class ClubRequest {
 
 
