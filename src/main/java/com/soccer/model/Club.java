@@ -11,22 +11,23 @@ import java.util.Date;
 public class Club {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="clubId")
     private Integer club_id;
 
     @Column
     private String name;
 
-    @Column
+    @Column(name="countryId")
     private Integer country_id;
 
-    @Column
+    @Column(name="managerId")
     private Integer manager_id;
 
-    @Column
+    @Column(name="createdDate")
     private Date created_date;
 
-    @Column
+    @Column(name="updatedDate")
     private Date updated_date;
 
     public Date getCreated_date() {

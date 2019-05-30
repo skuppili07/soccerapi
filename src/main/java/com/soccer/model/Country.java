@@ -13,6 +13,7 @@ import java.util.Date;
 @Table(name="country")
 public class Country {
     @Id
+    @Column(name="countryId")
     private Integer country_id; // the ISO 3166-1 numeric country codes
 
     @Column
@@ -24,10 +25,10 @@ public class Country {
     @Column
     private String alpha_3; // the ISO 3166-1 alpha-3 three-letter country codes
 
-    @Column
+    @Column(name="createdDate")
     private Date created_date;
 
-    @Column
+    @Column(name="updatedDate")
     private Date updated_date;
 
     public Date getCreated_date() {

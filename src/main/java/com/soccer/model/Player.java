@@ -13,40 +13,41 @@ import java.util.Date;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="playerId")
     private Integer player_Id;
 
-    @Column
+    @Column(name="firstName")
     private String first_name;
 
-    @Column
+    @Column(name="middleName")
     private String middle_name;
 
-    @Column
+    @Column(name="lastName")
     private String last_name;
 
-    @Column
+    @Column(name="birthDate")
     private String birth_date;
 
-    @Column
+    @Column(name="nationalityCountryId")
     private String nationality_country_id;
 
-    @Column
+    @Column(name="birthCountryId")
     private Integer birth_country_id;
 
-    @Column
+    @Column(name="clubId")
     private String club_id;
 
-    @Column
+    @Column(name="startDate")
     private LocalDate start_date;
 
-    @Column
+    @Column(name="endDate")
     private LocalDate end_date;
 
-    @Column
+    @Column(name="createdDate")
     private Date created_date;
 
-    @Column
+    @Column(name="updatedDate")
     private Date updated_date;
 
     public Date getCreated_date() {

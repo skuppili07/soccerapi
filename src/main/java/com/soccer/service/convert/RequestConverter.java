@@ -56,6 +56,9 @@ public class RequestConverter {
         if (playerRequest.getFirst_name() != null && playerRequest.getFirst_name().trim() != "") {
             player.setFirst_name(playerRequest.getFirst_name());
         }
+        if (playerRequest.getMiddle_name() != null && playerRequest.getMiddle_name().trim() != "") {
+            player.setMiddle_name(playerRequest.getMiddle_name());
+        }
         if (playerRequest.getBirth_country_id() != null && playerRequest.getBirth_country_id() != 0) {
             player.setBirth_country_id(playerRequest.getBirth_country_id());
         }

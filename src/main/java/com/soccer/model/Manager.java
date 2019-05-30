@@ -12,31 +12,32 @@ import java.util.Date;
 public class Manager {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="managerId")
     private Integer manager_id;
 
-    @Column
+    @Column(name="firstName")
     private String first_name;
 
-    @Column
+    @Column(name="lastName")
     private String last_name;
 
-    @Column
+    @Column(name="birthDate")
     private Date birth_date;
 
-    @Column
+    @Column(name="countryId")
     private Integer country_id;
 
-    @Column
+    @Column(name="startDate")
     private LocalDate start_date;
 
-    @Column
+    @Column(name="endDate")
     private LocalDate end_date;
 
-    @Column
+    @Column(name="createdDate")
     private Date created_date;
 
-    @Column
+    @Column(name="updatedDate")
     private Date updated_date;
 
     public Date getCreated_date() {
